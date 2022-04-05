@@ -77,8 +77,10 @@ function defenderlr.startplugin()
 				ioport = manager.machine.ioport
 				memory = manager.machine.devices[':maincpu'].spaces['program']
 				thrust = ioport.ports[':IN0'].fields['Thrust']
-				button_left = ioport:type_seq(IPT_JOYSTICK_LEFT)
-				button_right = ioport:type_seq(IPT_JOYSTICK_RIGHT)
+				--button_left = ioport:type_seq(IPT_JOYSTICK_LEFT)
+				--button_right = ioport:type_seq(IPT_JOYSTICK_RIGHT)
+				button_left = ioport:type_seq(IPT_JOYSTICK_LEFT, 0, "standard")   -- fix issue with MAME v0.141 requiring the optional parameters for type_seq
+				button_right = ioport:type_seq(IPT_JOYSTICK_RIGHT, 0, "standard") --/ 
 				emu.register_frame_done(process_frame)
 			else
 				print("ERROR: The 'defenderlr' plugin requires MAME version 0.227 or greater.")			
